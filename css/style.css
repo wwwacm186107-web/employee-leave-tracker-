@@ -1,0 +1,717 @@
+/* ============================================================
+   style.css — design tokens, layout, components.
+   One accent colour (blue) + neutrals. Employee identity colours
+   live in data.js and are applied inline where needed.
+   ============================================================ */
+
+/* --- Design tokens (8px spacing system) --- */
+:root {
+  /* Neutral ramp */
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+
+  /* Accent ramp (blue) */
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+
+  /* Status colours */
+  --success-600: #16a34a;
+  --success-100: #dcfce7;
+  --warning-600: #d97706;
+  --warning-100: #fef3c7;
+  --error-600: #dc2626;
+  --error-100: #fee2e2;
+
+  /* Typography */
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+/* --- Reset & base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--neutral-800);
+  background: var(--neutral-100);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+/* --- App shell layout --- */
+.app-header {
+  background: var(--neutral-900);
+  color: var(--neutral-50);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--primary-600);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+
+.brand-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.brand-subtitle {
+  font-size: 13px;
+  color: var(--neutral-300);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.field-label {
+  font-size: 13px;
+  color: var(--neutral-300);
+  display: block;
+  margin-bottom: 4px;
+}
+
+select {
+  font: inherit;
+  padding: 8px 32px 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--neutral-600);
+  background: var(--neutral-800);
+  color: var(--neutral-50);
+  cursor: pointer;
+}
+
+select:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- Sections & cards --- */
+.section-title {
+  font-size: 16px;
+  color: var(--neutral-900);
+  margin-bottom: 12px;
+}
+
+/* Employee overview strip */
+.overview-card {
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.overview-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--neutral-900);
+}
+
+.overview-role {
+  font-size: 14px;
+  color: var(--neutral-500);
+}
+
+.overview-meta {
+  margin-left: auto;
+  display: flex;
+  gap: 32px;
+}
+
+.meta-item {
+  text-align: right;
+}
+
+.meta-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--neutral-500);
+}
+
+.meta-value {
+  font-weight: 600;
+  color: var(--neutral-800);
+}
+
+/* Summary card grid */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.summary-card {
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-type {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--neutral-900);
+}
+
+.summary-figures {
+  display: flex;
+  gap: 20px;
+}
+
+.summary-figure .figure-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--neutral-900);
+}
+
+.summary-figure .figure-label {
+  font-size: 12px;
+  color: var(--neutral-500);
+}
+
+.figure-value.remaining {
+  color: var(--primary-600);
+}
+
+/* Progress track — "used" fills from the left, grey = remaining */
+.progress-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--neutral-200);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--primary-600);
+  transition: width 0.3s ease;
+}
+
+/* Unpaid leave card — no allowance, different presentation */
+.summary-card.unpaid {
+  background: var(--neutral-50);
+}
+
+/* Over-allocation (remaining below zero) gets a warning tone */
+.summary-card.overallocated {
+  border-color: var(--error-600);
+}
+
+.figure-value.negative {
+  color: var(--error-600);
+}
+
+/* Upcoming leave list */
+.upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upcoming-item {
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.upcoming-type {
+  font-weight: 600;
+  color: var(--neutral-900);
+  min-width: 140px;
+}
+
+.upcoming-dates {
+  color: var(--neutral-600);
+  font-variant-numeric: tabular-nums;
+}
+
+.upcoming-days {
+  color: var(--neutral-500);
+  font-size: 14px;
+}
+
+.status-badge {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.approved {
+  background: var(--success-600);
+  color: #fff;
+}
+
+.status-badge.scheduled {
+  background: #533cc3;
+  color: #fff;
+}
+
+.status-badge.pending {
+  background: #fde047;
+  color: #713f12;
+}
+
+.status-badge.rejected {
+  background: var(--error-100);
+  color: var(--error-600);
+}
+
+.status-badge.cancelled {
+  background: var(--neutral-200);
+  color: var(--neutral-600);
+}
+
+/* Card extras used by balance rendering */
+.card-note {
+  font-size: 12px;
+  color: var(--neutral-500);
+}
+
+.card-warning {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--error-600);
+}
+
+/* Calendar section */
+.calendar-section {
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+}
+
+.calendar-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.calendar-toolbar .section-title {
+  margin-bottom: 0;
+  min-width: 180px;
+}
+
+.calendar-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-button {
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--neutral-300);
+  background: #fff;
+  color: var(--neutral-700);
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background: var(--neutral-100);
+}
+
+.nav-button:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+.calendar-filter {
+  margin-left: auto;
+}
+
+.field-label.dark {
+  color: var(--neutral-500);
+}
+
+.calendar-filter select {
+  background: #fff;
+  border-color: var(--neutral-300);
+  color: var(--neutral-800);
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Month grid: 7 columns, Monday-first */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-weekday {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--neutral-500);
+  text-align: center;
+  padding: 4px 0;
+}
+
+.calendar-day {
+  min-height: 64px;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.calendar-day:hover {
+  border-color: var(--primary-500);
+}
+
+.calendar-day:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: -2px;
+}
+
+.calendar-day.other-month {
+  background: var(--neutral-50);
+  border-style: dashed;
+  cursor: default;
+}
+
+.calendar-day.weekend {
+  background: var(--neutral-50);
+}
+
+.calendar-day.weekend .day-number {
+  color: #B91C1C;
+  font-weight: bolder;
+}
+
+/* Whole-date status colours. Change these three values to customise
+   the approved, scheduled, and pending backgrounds. */
+.calendar-day.leave-approved {
+  background: #ECFDF5;
+}
+
+.calendar-day.leave-scheduled {
+  background: #F5F3FF;
+}
+
+.calendar-day.leave-pending {
+  background: #FFFBEB;
+}
+
+.calendar-day.today .day-number {
+  background: var(--primary-600);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.calendar-day.selected {
+  border-color: var(--primary-600);
+  box-shadow: 0 0 0 2px var(--primary-100);
+}
+
+.day-number {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--neutral-700);
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+}
+
+.day-indicators {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+/* Status-coded ring around the employee-coloured dot.
+   Strong colours chosen for clear separation: dark blue = approved,
+   orange = scheduled, yellow = pending. */
+.day-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.day-more {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--neutral-600);
+  align-self: center;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.legend-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--neutral-600);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot.approved {
+  background-color: #b5ffdc;
+}
+
+.legend-dot.scheduled {
+  background-color: #c8bdff;
+}
+
+.legend-dot.pending {
+  background-color: #ffeeaa;
+}
+
+/* Date detail panel */
+.calendar-detail {
+  border-left: 1px solid var(--neutral-200);
+  padding-left: 24px;
+  min-height: 300px;
+}
+
+.detail-title {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.detail-hint {
+  font-size: 13px;
+  color: var(--neutral-500);
+}
+
+.detail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.detail-body {
+  flex: 1;
+}
+
+.detail-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--neutral-900);
+}
+
+.detail-line {
+  font-size: 13px;
+  color: var(--neutral-500);
+}
+
+.detail-item .status-badge {
+  margin-left: 0;
+}
+
+/* Empty states */
+.empty-note {
+  color: var(--neutral-500);
+  background: #fff;
+  border: 1px dashed var(--neutral-300);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+}
+
+/* --- Responsive --- */
+@media (max-width: 960px) {
+  .calendar-body {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-detail {
+    border-left: none;
+    border-top: 1px solid var(--neutral-200);
+    padding-left: 0;
+    padding-top: 16px;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-main {
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .overview-meta {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .meta-item {
+    text-align: left;
+  }
+
+  .status-badge {
+    margin-left: 0;
+  }
+
+  .calendar-section {
+    padding: 16px;
+  }
+
+  .calendar-toolbar {
+    gap: 12px;
+  }
+
+  .calendar-filter {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .calendar-filter select {
+    width: 100%;
+  }
+
+  /* Keep cells usable: shorter height, smaller numbers, hide
+     weekend cells' height overhead is not needed */
+  .calendar-day {
+    min-height: 44px;
+    padding: 2px 4px;
+  }
+
+  .day-number {
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .calendar-weekday {
+    font-size: 10px;
+  }
+}

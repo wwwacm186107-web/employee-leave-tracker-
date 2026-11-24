@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Leave Tracker — 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">L</div>
+          <div>
+            <div class="brand-title">Leave Tracker</div>
+            <div class="brand-subtitle">Leave year 2026</div>
+          </div>
+        </div>
+        <div class="header-controls">
+          <div>
+            <label class="field-label" for="employee-select">Employee</label>
+            <select id="employee-select" aria-label="Select employee"></select>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- B: Employee overview -->
+      <section id="overview-section" aria-label="Employee overview"></section>
+
+      <!-- C: Leave summary cards -->
+      <section aria-label="Leave balances">
+        <h2 class="section-title">Leave balances 2026</h2>
+        <div id="summary-grid" class="summary-grid"></div>
+      </section>
+
+      <!-- D: Upcoming leave -->
+      <section aria-label="Upcoming leave">
+        <h2 class="section-title">Upcoming &amp; scheduled leave</h2>
+        <div id="upcoming-list" class="upcoming-list"></div>
+      </section>
+
+      <!-- E: Leave calendar -->
+      <section class="calendar-section" aria-label="Leave calendar">
+        <div class="calendar-toolbar">
+          <h2 class="section-title" data-calendar-heading>Month</h2>
+          <div class="calendar-nav">
+            <button type="button" class="nav-button" data-calendar-prev aria-label="Previous month">‹</button>
+            <button type="button" class="nav-button" data-calendar-next aria-label="Next month">›</button>
+          </div>
+          <div class="calendar-filter">
+            <label class="field-label dark" for="calendar-employee-filter">Show</label>
+            <select id="calendar-employee-filter" data-calendar-filter aria-label="Filter calendar by employee">
+              <option value="all">All employees</option>
+            </select>
+          </div>
+        </div>
+        <div class="calendar-body">
+          <div>
+            <div class="calendar-grid" data-calendar-grid></div>
+            <div class="legend" data-calendar-legend></div>
+          </div>
+          <aside class="calendar-detail" data-calendar-detail aria-live="polite"></aside>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
